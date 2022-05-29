@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/32f181d7c4.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+            background-color: rgb(19,26,40);
+            width: 90%;
+            margin: auto;
+        }
+        #navbar {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            color: grey;
+        }
+        .menubar {
+            margin-top: 15px;
+        }
+        .menubar>a{
+            text-decoration: none;
+            color: gray;
+        }
+        #navbar>div:first-child{
+            width: 45%;
+            display: flex;
+            justify-content: space-between;
+        }
+        #navbar>div:last-child{
+            width: 30%;
+            display: flex;
+            justify-content: space-between;
+        }
+        #logo>a>img {
+            width: 150px;
+            height: 42px;
+            object-fit: cover;
+        }
+        #search {
+            background-color: rgb(19,26,40);
+            width: 200px;
+            color: gray;
+            border: 0px solid black;
+            border-bottom: 1px solid gray;
+        }
+        #btn>button {
+            border: 1px solid royalblue;
+            color: royalblue;
+            background-color: rgb(19,26,40);
+        }
+        #kids{
+            color: yellow;
+        }
+        #user {
+            margin-top: 5px;
+        }
+        #results{
+            position: absolute;
+        }
+        #movie {
+            padding-top: 50px;
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 30px;
+            margin: auto;
+        }
+        #movie>div:first-child {
+            margin-right: 30px;
+        }
+        #movie>div>img {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <div>
+            <div class="menubar"><i class="fa-solid fa-bars"></i></div>
+            <div id="logo"><a href="index.html"><img src="data:image/png;base64,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"></a></div>
+            <div class="menubar"><a>TV</a></div>
+            <div class="menubar"><a href="trending.html">Movies</a></div>
+            <div class="menubar"><a>Sports</a></div>
+            <div class="menubar"><a>Disney+</a></div>
+            <div class="menubar" id="kids"><a>KiDS</a></div>
+        </div>
+        <div>
+            <div>
+                <input placeholder="Search" class="menubar" type="text" id="search" oninput="debounce(main, 1000)">
+                <div class="menubar" id="results"></div>
+            </div>
+            <div class="menubar" id="btn"><button>UPGRADE</button></div>
+            <div id="user"><img src="https://www.hotstar.com/assets/c724e71754181298e3f835e46ade0517.svg"></div>
+        </div>
+    </div>
+    <div id="movie"></div>
+    
+</body>
+</html>
+<script>
+
+    trendingMovies();
+
+    async function trendingMovies(){
+        try {
+            let url = `https://api.themoviedb.org/3/trending/movie/week?api_key=227956755e98e8e59bcee24f5b0f42f6`;
+
+            let res = await fetch(url);
+            let data = await res.json();
+            let movies = data.results;
+            console.log(movies);
+            showTrending(movies);
+        }
+        catch(err) {
+            console.log(err);
+        }
+    }
+
+    let movie = document.getElementById("movie");
+
+    function showTrending(data){
+        movie.innerHTML = null;
+        data.map(function(el){
+                
+            let name = document.createElement("h2");
+            name.innerText = el.title;
+            let released = document.createElement("p");
+            released.innerText = "Released: "+el.release_date;
+            let rating = document.createElement("p");
+            rating.innerText = el.vote_average+"/10";
+            let plot = document.createElement("p");
+            plot.innerText = el.overview;
+
+            let div = document.createElement("div");
+
+            div.append(name, released, rating, plot);
+            movie.append(div);
+        });
+    }
+
+    async function searchMovies(){
+        try {
+            let search = document.getElementById("search").value;
+
+            if(search.length===0){
+                return false;
+            }
+            let url = `https://www.omdbapi.com/?s=${search}&apikey=3d585fa5`;
+
+            let res = await fetch(url);
+            let data = await res.json();
+            let movies = data.Search;
+            return movies;
+        }
+        catch(err) {
+            console.log(err);
+        }
+    }
+
+    let results = document.getElementById("results");
+
+    function showResults(data){
+        results.innerHTML = null;
+        data.map(function(el){
+            let name = document.createElement("p");
+            name.innerText = el.Title;
+            name.onclick = function(){
+                console.log(el)
+                selectMovie(el);
+            }
+            results.append(name);
+        })
+    }
+
+    async function selectMovie(el){
+        results.innerHTML = null;
+      
+        let name = el.Title;
+
+        let url = `https://www.omdbapi.com/?t=${name}&apikey=3d585fa5`;
+
+        let res = await fetch(url);
+        let data = await res.json();
+        console.log(data)
+
+        showMovie(data);
+       
+    }
+
+    function showMovie(data){
+        movie.innerHTML = null;
+
+        let poster = document.createElement("img");
+        poster.src = data.Poster;
+            
+        let title = document.createElement("h1");
+        title.innerText = data.Title;
+        let time = document.createElement("p");
+        time.innerText = data.Runtime;
+        let year = document.createElement("p");
+        year.innerText = data.Year;
+        let genre = document.createElement("p");
+        genre.innerText = data.Genre;
+        let rating = document.createElement("p");
+        rating.innerText = data.imdbRating+"/10";
+        let plot = document.createElement("p");
+        plot.innerText = data.Plot;
+
+        let actors = document.createElement("p");
+        actors.innerText = data.Actors;
+
+        let div = document.createElement("div");
+        let photo = document.createElement("div");
+
+        photo.append(poster);
+        div.append(title, time, year, rating, genre, plot, actors);
+        movie.append(photo,div);
+    }
+
+    async function main(){
+        let data = await searchMovies();
+        console.log(data);
+
+        if(data == undefined){
+            return false;
+        }
+
+        showResults(data);
+    }
+
+    let timerid;
+
+    function debounce(func, delay){
+
+        if(timerid){
+            clearTimeout(timerid);
+        }
+
+        timerid = setTimeout(function(){
+            func();
+        }, delay);
+    }
+</script>
